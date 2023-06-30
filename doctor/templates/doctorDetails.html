@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 align="center">Doctor Details</h2>
+
+     <div class="container">
+     <div class="row justify-content-center m-4">
+            <div class="col-md-4">
+                <a href="{% url 'showDoctors' %}" class="btn btn-primary">Back</a>
+            <div class="card m-2" style="width: 18rem;">
+                <img src="{{ eachdoctor.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{ eachdoctor.name }}</h3>
+                    <h5 class="card-title">{{ eachdoctor.hospital_name }}</h5>
+                    <h4 class="card-text">{{ eachdoctor.category }}</h4>
+                    <p class="card-text">{{ eachdoctor.is_available }}</p>
+                    <a href="{% url 'deleteDoctor' eachdoctor.pk %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'updateDoctor' eachdoctor.pk %}" class="btn btn-warning">Update</a>
+                </div>
+            </div>
+            </div>
+     </div>
+     </div>
+{% endblock %}

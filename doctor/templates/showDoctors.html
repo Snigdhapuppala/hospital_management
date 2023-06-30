@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 align="center">Show Doctors</h2>
+<div class="container">
+ <div class="row justify-content-center m-4">
+
+    {% if doctors %}
+        {% for doctor in doctors %}
+            <div class="col-md-4">
+            <div class="card m-2" style="width: 18rem;">
+                <img src="{{ doctor.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title">{{ doctor.name }}</h3>
+                    <h5 class="card-title">{{ doctor.hospital_name }}</h5>
+                    <h4 class="card-text">{{ doctor.category }}</h4>
+                    <p class="card-text">{{ doctor.is_available }}</p>
+                    <a href="{% url 'doctorDetails' doctor.id %}" class="btn btn-primary">More Details</a>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+                   <p>Sorry Doctor is Not available........</p>
+    {% endif %}
+
+ </div>
+</div>
+{% endblock %}
