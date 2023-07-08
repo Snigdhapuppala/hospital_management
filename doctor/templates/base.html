@@ -7,8 +7,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </head>
-  <body>
-    <h2 class="text-center mt-2">Hospital Management</h2>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+  <div class="container-fluid" style="background-color: #9AECDB" >
+    <a class="navbar-brand" href="{% url 'showDoctors' %}">
+    <img src="{{ 'images/logo.png' }}" width="80" height="80"  alt="" class="d-inline-block align-middle mr-2 rounded-circle">
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'showDoctors' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'addDoctor' %}">Add Doctor</a>
+        </li>
+
+      </ul>
+          {% if user.is_authenticated %}
+
+              <a href="javascript:{document.getElementById('logout').submit()}" class="btn btn-secondary btn-lg active mx-1" role="button" aria-pressed="true" style="background-color: #0abde3; border-color: #00d2d3">Logout</a>
+              <form action="{% url 'logout' %}" method="post" id="logout">
+                  {% csrf_token %}
+                  <input type="hidden">
+             </form>
+          {% else %}
+              <a href="{% url 'register' %}" class="btn btn-secondary btn-lg active mx-1" role="button" aria-pressed="true" style="background-color: #0abde3; border-color: #00d2d3">Register</a>
+
+              <a href="{% url 'login' %}" class="btn btn-primary btn-lg active mx-1" role="button" aria-pressed="true" style="background-color: #f1c40f; border-color: #f39c12">Login</a>
+
+          {% endif %}
+    <br>
+
+
+
+      <form class="d-flex" role="search" method="get" action="{% url 'search' %}">
+        <input class="form-control me-2" name="query" type="Search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
     {% block content %}
 
     {% endblock %}
