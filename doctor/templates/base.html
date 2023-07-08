@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -11,7 +12,7 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
   <div class="container-fluid" style="background-color: #9AECDB" >
     <a class="navbar-brand" href="{% url 'showDoctors' %}">
-    <img src="{{ 'images/logo.png' }}" width="80" height="80"  alt="" class="d-inline-block align-middle mr-2 rounded-circle">
+    <img src="{% static 'images/logo.png' %}" width="80" height="80"  alt="" class="d-inline-block align-middle mr-2 rounded-circle">
 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
