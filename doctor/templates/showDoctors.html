@@ -7,7 +7,7 @@
     {% if doctors %}
         {% for doctor in doctors %}
             <div class="col-md-4">
-            <div class="card m-2" style="width: 18rem;">
+            <div class="card m-2 shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
                 <img src="{{ doctor.image.url }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h3 class="card-title">{{ doctor.name }}</h3>
