@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Doctor
 # Create your views here.
 from .forms import DoctorForm
@@ -14,6 +15,7 @@ def doctorDetails(request, pk):
         'eachdoctor': eachdoctor
     }
     return render(request, 'doctorDetails.html', context)
+@login_required(login_url='showDoctors')
 def addDoctor(request):
     form = DoctorForm()
 
@@ -27,6 +29,7 @@ def addDoctor(request):
         'form': form
     }
     return render(request, 'addDoctor.html', context)
+@login_required(login_url='showDoctors')
 def updateDoctor(request, pk):
     doctor = Doctor.objects.get(id=pk)
 
@@ -40,6 +43,7 @@ def updateDoctor(request, pk):
         'form': form
     }
     return render(request, 'updateDoctors.html', context)
+@login_required(login_url='showDoctors')
 def deleteDoctor(request, pk):
     doctor = Doctor.objects.get(id=pk)
     doctor.delete()
