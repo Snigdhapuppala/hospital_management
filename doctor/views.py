@@ -49,3 +49,14 @@ def deleteDoctor(request, pk):
     doctor.delete()
 
     return redirect('showDoctors')
+@login_required(login_url='showDoctors')
+def searchBar(request):
+    if request.method == 'GET':
+        query = request.GET.get('query')  # value
+        if query:
+            doctor = Doctor.objects.filter(hospital_name__contains=query)
+            return render(request, 'searchbar.html', {"doctor": doctor})
+        else:
+            print("No Doctors found")
+            return render(request, 'searchbar.html', {})
+            
